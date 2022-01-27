@@ -3,9 +3,11 @@ package msgapi
 import (
 	// "errors"
 	"fmt"
+
 	"github.com/askovpen/gossiped/pkg/config"
 	"github.com/askovpen/gossiped/pkg/types"
 	"github.com/askovpen/gossiped/pkg/utils"
+
 	//"log"
 	"regexp"
 	"strconv"
@@ -73,6 +75,8 @@ func (m *Message) ParseRaw() error {
 		if _, ok := m.Kludges["INTL"]; ok {
 			m.ToAddr = types.AddrFromString(strings.Split(m.Kludges["INTL"], " ")[0])
 			m.FromAddr = types.AddrFromString(strings.Split(m.Kludges["INTL"], " ")[1])
+		} else if _, ok := m.Kludges["MSGID:"]; ok {
+			m.FromAddr = types.AddrFromString(strings.Split(m.Kludges["MSGID:"], " ")[0])
 		} else if _, ok := m.Kludges["ORIGIN"]; ok {
 			m.FromAddr = types.AddrFromString(m.Kludges["ORIGIN"])
 		}
