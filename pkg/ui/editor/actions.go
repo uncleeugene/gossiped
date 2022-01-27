@@ -75,6 +75,15 @@ func (v *View) CursorLeft() bool {
 	return true
 }
 
+func (v *View) UpdateSelection() bool {
+	if v.Cursor.HasSelection() {
+		v.Cursor.SetSelectionEnd(v.Cursor.CurSelection[1])
+	} else {
+		v.Cursor.SetSelectionStart(v.Cursor.Loc)
+	}
+	return true
+}
+
 // CursorRight moves the cursor right
 func (v *View) CursorRight() bool {
 	if v.Cursor.HasSelection() {

@@ -40,6 +40,7 @@ const (
 	ActionEscape              = "Escape"
 	ActionInsertEnter         = "InsertEnter"
 	ActionUnbindKey           = "UnbindKey"
+	ActionUpdateSelection     = "UpdateSelection"
 )
 
 // keyDesc holds the data for a keypress (keycode + modifiers)
@@ -128,6 +129,7 @@ var bindingActions = map[string]func(*View) bool{
 	ActionToggleOverwriteMode: (*View).ToggleOverwriteMode,
 	ActionEscape:              (*View).Escape,
 	ActionInsertEnter:         (*View).InsertNewline,
+	ActionUpdateSelection:     (*View).UpdateSelection,
 }
 
 var bindingKeys = map[string]tcell.Key{
